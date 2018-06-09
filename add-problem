@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+# you're going to need BeautifulSoup and python 3
+import sys
+import os
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+url = sys.argv[1]
+html = urlopen(url).read().decode("utf8")
+
+soup = BeautifulSoup(html, "html.parser")
+header = soup.find("h1").get_text().splitlines()[0]
+a = soup.find("div", {"class": "problem-statement"})
+
+try:
+    bq = soup.find("blockquote")
+    bq.extract()
+except:
+    pass
+
+[x.replaceWith("\n### {}".format(x.get_text())) for x in a.find_all("h2")]
+
+info = a.get_text()
+
+with open("README.md", "a") as readme:
+    readme.write(f"\n## [{header}]({url})\n")
+    readme.write(f"{info}\n")
+
+dir_and_exe = "-".join(header.lower().split())
+
+with open("rosalind-haskell.cabal", "a") as cabal:
+    cabal.write(
+    f"""
+executable {dir_and_exe}
+    main-is:            {dir_and_exe}/Main.hs
+    build-depends:      base >=4.10 && <4.11
+    hs-source-dirs:     src
+    default-language:   Haskell2010
+"""
+    )
+
+os.makedirs(os.path.join("src", dir_and_exe))
+
+code_file = os.path.join("src", dir_and_exe, "Main.hs")
+if not os.path.isdir(code_file):
+    with open(code_file, "w") as f:
+        f.write("module Main where\n\n")
+        f.write("import System.Environment\n\n")
+        f.write("main = do\n")
+        f.write("\targs <- fmap head getArgs\n")
