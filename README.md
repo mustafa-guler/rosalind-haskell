@@ -1,7 +1,8 @@
 # Rosalind Haskell
 
 Solutions to various [Rosalind](http://rosalind.info/) problems
-using [Haskell](https://www.haskell.org/).
+using [Haskell](https://www.haskell.org/). The more generalizable portions 
+are moved into the `BioUtil.hs` module.
 
 To add problem solutions run:
 
