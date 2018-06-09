@@ -28,3 +28,10 @@ executable counting-dna-nucleotides
     build-depends:      base >=4.10 && <4.11
     hs-source-dirs:     src
     default-language:   Haskell2010
+
+
+executable transcribing-dna-into-rna
+    main-is:            transcribing-dna-into-rna/Main.hs
+    build-depends:      base >=4.10 && <4.11
+    hs-source-dirs:     src
+    default-language:   Haskell2010
