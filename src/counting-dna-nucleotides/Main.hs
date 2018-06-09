@@ -20,5 +20,5 @@ all_counts x =  [
 -- read input and print output
 main = do
     args <- fmap head getArgs
-    dna <- readFile a
+    dna <- readFile args
     putStrLn $ intercalate " " $ map show $ all_counts $ dnaSeq $ init dna

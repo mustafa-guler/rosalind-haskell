@@ -23,12 +23,12 @@ Main.hs
 
 To build a solution:
 ```bash
-$ cabal build counting-dna-nucleotides
+$ build-problem <url>
 ```
 
 To run a solution:
 ```bash
-$ cabal run counting-dna-nucleotides <input file from rosalind>
+$ run-problem <url> <rosalind input txt file>
 ```
 
 The output will be printed to stdout.
