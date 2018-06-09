@@ -35,3 +35,9 @@ executable transcribing-dna-into-rna
     build-depends:      base >=4.10 && <4.11
     hs-source-dirs:     src
     default-language:   Haskell2010
+
+executable complementing-a-strand-of-dna
+    main-is:            complementing-a-strand-of-dna/Main.hs
+    build-depends:      base >=4.10 && <4.11
+    hs-source-dirs:     src
+    default-language:   Haskell2010
